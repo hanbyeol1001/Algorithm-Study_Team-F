@@ -4,28 +4,15 @@
 # output: 최대한 적은 봉지로 배달할 경우 배달하는 봉지 개수
 
 n = int(input())
-answer = 0
-while n > 0:
-    if n % 5 == 0:
-        answer += n // 5
-        n -= n
+
+bags = 0
+
+while n >= 0:
+    if n % 5 == 0:  # 5kg 봉지로 나누어떨어지면 그걸로 최대한 채우기
+        bags += n // 5
+        print(bags)
         break
-    elif n % 3 == 0:
-        if n//3 > 5:
-            answer += 3
-            n -= 3*5
-            continue
-        answer += n // 3
-        n -= n
-        break
-    else:
-        if n > 5:
-            answer += 1
-            n -= 5
-        else:
-            answer += 1
-            n -= 3
-if n == 0:
-    print(answer)
-else:
-    print(-1)
+    n -= 3  # 5kg로 나누어떨어지지 않으면 3kg 봉지를 하나 사용
+    bags += 1
+if n < 0:
+    print(-1)  # 3kg로도 나누어떨어지지 않는 경우
